@@ -53,6 +53,9 @@ const App = () => {
         }
         break;
       case 'operator':
+        if (!input || input === '-') {
+          break;
+        }
         setActiveOperator(true);
         setCurrNum('');
         if (activeOperator) {
