@@ -4,6 +4,7 @@ import buttons from './keyboardButtons';
 import './Keyboard.scss';
 
 const Keyboard = (props) => {
+  const { handleButtonClick } = props;
   return (
     <div className="keyboard">
       {buttons.map((button) => {
@@ -12,6 +13,8 @@ const Keyboard = (props) => {
           <Button
             className={className}
             content={content}
+            value={content}
+            handleButtonClick={handleButtonClick}
             key={`btn-${content}`}
           />
         );
