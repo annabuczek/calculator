@@ -8,12 +8,13 @@ const Keyboard = (props) => {
   return (
     <div className="keyboard">
       {buttons.map((button) => {
-        const { className, content } = button;
+        const { className, content, action } = button;
         return (
           <Button
             className={className}
             content={content}
             value={content}
+            action={action}
             handleButtonClick={handleButtonClick}
             key={`btn-${content}`}
           />
