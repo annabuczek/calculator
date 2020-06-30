@@ -2,7 +2,7 @@ export default [
   {
     className: 'button--gradient-dark',
     content: '%',
-    action: '',
+    action: 'percent',
   },
   {
     className: 'button--gradient-dark',

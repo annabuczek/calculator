@@ -10,29 +10,34 @@ const App = () => {
   const [currNum, setCurrNum] = useState('');
   const [prevNum, setPrevNum] = useState('');
   const [activeOperator, setActiveOperator] = useState(false);
+  const [activePercent, setActivePercent] = useState(false);
 
   const handleButtonClick = (e) => {
     const value = e.target.value;
     const action = e.target.attributes.action.value;
     console.log(action);
     console.log(value);
+    const currNumRegex = new RegExp(`${currNum}$`);
 
     switch (action) {
       case 'num':
-        setActiveOperator(false);
-        if (currNum === '0') {
+        if (currNum === '0' || activePercent) {
           setCurrNum(value);
         } else {
           setCurrNum(currNum + value);
         }
+
         if (!!input.match(/(\s|^)0$/)) {
           setInput(input.replace(/0$/, value));
+        } else if (activePercent) {
+          setInput(input.replace(currNumRegex, value));
         } else {
           setInput(input + value);
         }
+        setActiveOperator(false);
+        setActivePercent(false);
         break;
       case 'comma':
-        setActiveOperator(false);
         if (!currNum) {
           setCurrNum('0' + value);
           setInput(input + '0' + value);
@@ -40,30 +45,50 @@ const App = () => {
           setCurrNum(currNum + value);
           setInput(input + value);
         }
+
+        setActiveOperator(false);
         break;
       case 'toggle':
-        setActiveOperator(false);
-        const regex = new RegExp(`${currNum}$`);
         if (currNum.indexOf('-') === -1) {
           setCurrNum('-' + currNum);
-          setInput(input.replace(regex, `-${currNum}`));
+          setInput(input.replace(currNumRegex, `-${currNum}`));
         } else {
           setCurrNum(currNum.substr(1));
-          setInput(input.replace(regex, currNum.substr(1)));
+          setInput(input.replace(currNumRegex, currNum.substr(1)));
         }
+        setActiveOperator(false);
         break;
       case 'operator':
         if (!input || input === '-') {
           break;
         }
-        setActiveOperator(true);
+
         setCurrNum('');
         if (activeOperator) {
           setInput(input.replace(/(\+|-|\/|\*)\s$/, `${value} `));
         } else {
-          setPrevNum(currNum);
           setInput(input + ' ' + value + ' ');
+          setPrevNum(currNum);
         }
+        setActiveOperator(true);
+        setActivePercent(false);
+        break;
+      case 'percent':
+        let percentValue;
+        if (!currNum) {
+          break;
+        } else if (!prevNum) {
+          percentValue = String(parseFloat(currNum) / 100);
+          setCurrNum(percentValue);
+          setInput(input.replace(currNumRegex, percentValue));
+        } else {
+          percentValue = String(
+            parseFloat(prevNum) * (parseFloat(currNum) / 100),
+          );
+          setCurrNum(percentValue);
+          setInput(input.replace(currNumRegex, percentValue));
+        }
+        setActivePercent(true);
         break;
       case 'evaluate':
         setOutput(evaluate(input));
@@ -72,6 +97,9 @@ const App = () => {
         setInput('');
         setOutput('0');
         setCurrNum('');
+        setPrevNum('');
+        setActiveOperator(false);
+        setActivePercent(false);
         break;
       default:
         break;
@@ -87,6 +115,8 @@ const App = () => {
             output: output,
             currNum: currNum,
             prevNum: prevNum,
+            activePercent: activePercent,
+            activeOperator: activeOperator,
           },
           null,
           1,
