@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Keyboard from './components/Keyboard/Keyboard';
 import Header from './components/Header/Header';
+import { evaluate } from './helpers/math';
 import './App.scss';
 
 const App = () => {
@@ -35,7 +36,7 @@ const App = () => {
         if (!currNum) {
           setCurrNum('0' + value);
           setInput(input + '0' + value);
-        } else if (currNum.indexOf(',') === -1) {
+        } else if (currNum.indexOf('.') === -1) {
           setCurrNum(currNum + value);
           setInput(input + value);
         }
@@ -55,11 +56,14 @@ const App = () => {
         setActiveOperator(true);
         setCurrNum('');
         if (activeOperator) {
-          setInput(input.replace(/(\+|-|\/|\x)\s$/, `${value} `));
+          setInput(input.replace(/(\+|-|\/|\*)\s$/, `${value} `));
         } else {
           setPrevNum(currNum);
           setInput(input + ' ' + value + ' ');
         }
+        break;
+      case 'evaluate':
+        setOutput(evaluate(input));
         break;
       case 'clear':
         setInput('');

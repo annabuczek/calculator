@@ -37,6 +37,7 @@ export default [
   {
     className: 'button--accent2',
     content: 'x',
+    value: '*',
     action: 'operator',
   },
   {
@@ -87,11 +88,12 @@ export default [
   {
     className: 'button--gradient-light',
     content: ',',
+    value: '.',
     action: 'comma',
   },
   {
     className: 'button--expanded button--accent-strong',
     content: '=',
-    action: '',
+    action: 'evaluate',
   },
 ];
