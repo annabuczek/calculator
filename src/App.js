@@ -8,6 +8,7 @@ const App = () => {
   const [output, setOutput] = useState('0');
   const [currNum, setCurrNum] = useState('');
   const [prevNum, setPrevNum] = useState('');
+  const [activeOperator, setActiveOperator] = useState(false);
 
   const handleButtonClick = (e) => {
     const value = e.target.value;
@@ -17,6 +18,7 @@ const App = () => {
 
     switch (action) {
       case 'num':
+        setActiveOperator(false);
         if (currNum === '0') {
           setCurrNum(value);
         } else {
@@ -29,6 +31,7 @@ const App = () => {
         }
         break;
       case 'comma':
+        setActiveOperator(false);
         if (!currNum) {
           setCurrNum('0' + value);
           setInput(input + '0' + value);
@@ -38,6 +41,7 @@ const App = () => {
         }
         break;
       case 'toggle':
+        setActiveOperator(false);
         const regex = new RegExp(`${currNum}$`);
         if (currNum.indexOf('-') === -1) {
           setCurrNum('-' + currNum);
@@ -48,9 +52,14 @@ const App = () => {
         }
         break;
       case 'operator':
-        setPrevNum(currNum);
+        setActiveOperator(true);
         setCurrNum('');
-        setInput(input + ' ' + value + ' ');
+        if (activeOperator) {
+          setInput(input.replace(/(\+|-|\/|\x)\s$/, `${value} `));
+        } else {
+          setPrevNum(currNum);
+          setInput(input + ' ' + value + ' ');
+        }
         break;
       case 'clear':
         setInput('');
