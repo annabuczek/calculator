@@ -1,0 +1,8 @@
+@import '../../styles/variables';
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  height: 46rem;
+  max-height: 60vh;
+}

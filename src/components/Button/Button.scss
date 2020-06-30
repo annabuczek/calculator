@@ -1,0 +1,58 @@
+@import '../../styles/variables';
+
+.button {
+  display: flex;
+  flex-basis: 25%;
+  max-height: 9.2rem;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-size: 2.2rem;
+  font-weight: $font-weight-light;
+  color: $color-button-text;
+}
+
+.button--expanded {
+  flex-basis: 50%;
+}
+
+.button--gradient-dark {
+  background-image: linear-gradient(
+    90deg,
+    $color-button-gradient1-start,
+    $color-button-gradient1-end
+  );
+}
+
+.button--gradient-light {
+  background-image: linear-gradient(
+    110deg,
+    $color-button-gradient2-start,
+    $color-button-gradient2-end
+  );
+}
+
+.button--accent1 {
+  background-color: $color-button-accent1;
+  color: $color-button-text-light;
+}
+
+.button--accent2 {
+  background-color: $color-button-accent2;
+  color: $color-button-text-light;
+}
+
+.button--accent3 {
+  background-color: $color-button-accent3;
+  color: $color-button-text-light;
+}
+
+.button--accent4 {
+  background-color: $color-button-accent4;
+  color: $color-button-text-light;
+}
+
+.button--accent-strong {
+  background-color: $color-button-accent-strong;
+  color: $color-button-text-light;
+}

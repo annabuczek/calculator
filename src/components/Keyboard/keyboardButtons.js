@@ -1,78 +1,78 @@
 export default [
   {
-    className: '',
+    className: 'button--gradient-dark',
     content: '%',
   },
   {
-    className: '',
+    className: 'button--gradient-dark',
     content: '+/-',
   },
   {
-    className: '',
+    className: 'button--gradient-dark',
     content: 'C',
   },
   {
-    className: '',
+    className: 'button--accent1',
     content: '/',
   },
   {
-    className: '',
+    className: 'button--gradient-light',
     content: '7',
   },
   {
-    className: '',
+    className: 'button--gradient-light',
     content: '8',
   },
   {
-    className: '',
+    className: 'button--gradient-light',
     content: '9',
   },
   {
-    className: '',
+    className: 'button--accent2',
     content: 'x',
   },
   {
-    className: '',
+    className: 'button--gradient-light',
     content: '4',
   },
   {
-    className: '',
+    className: 'button--gradient-light',
     content: '5',
   },
   {
-    className: '',
+    className: 'button--gradient-light',
     content: '6',
   },
   {
-    className: '',
+    className: 'button--accent3',
     content: '-',
   },
   {
-    className: '',
+    className: 'button--gradient-light',
     content: '1',
   },
   {
-    className: '',
+    className: 'button--gradient-light',
     content: '2',
   },
   {
-    className: '',
+    className: 'button--gradient-light',
     content: '3',
   },
   {
-    className: '',
+    className: 'button--accent4',
     content: '+',
   },
   {
-    className: '',
+    className: 'button--gradient-light',
     content: '0',
   },
   {
-    className: '',
+    className: 'button--gradient-light',
     content: ',',
   },
   {
-    className: '',
+    className: 'button--expanded button--accent-strong',
     content: '=',
   },
 ];
