@@ -7,7 +7,7 @@ export default [
   {
     className: 'button--gradient-dark',
     content: '+/-',
-    action: '',
+    action: 'toggle',
   },
   {
     className: 'button--gradient-dark',

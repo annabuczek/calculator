@@ -37,6 +37,16 @@ const App = () => {
           setInput(input + value);
         }
         break;
+      case 'toggle':
+        const regex = new RegExp(`${currNum}$`);
+        if (currNum.indexOf('-') === -1) {
+          setCurrNum('-' + currNum);
+          setInput(input.replace(regex, `-${currNum}`));
+        } else {
+          setCurrNum(currNum.substr(1));
+          setInput(input.replace(regex, currNum.substr(1)));
+        }
+        break;
       case 'operator':
         setPrevNum(currNum);
         setCurrNum('');
