@@ -4,10 +4,11 @@ import Output from '../Output/Output';
 import './Header.scss';
 
 const Header = (props) => {
+  const { input, output, finalInput } = props;
   return (
     <div className="header">
-      <Input input={props.input} />
-      <Output output={props.output} />
+      <Input input={input} finalInput={finalInput} />
+      <Output output={output} />
     </div>
   );
 };

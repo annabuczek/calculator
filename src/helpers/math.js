@@ -10,5 +10,5 @@ const _formatExpression = (exp) => {
 };
 
 export const evaluate = (exp) => {
-  return math.evaluate(_formatExpression(exp));
+  return String(math.evaluate(_formatExpression(exp)));
 };

@@ -6,6 +6,7 @@ import './App.scss';
 
 const App = () => {
   const [input, setInput] = useState('');
+  const [finalInput, setFinalInput] = useState('');
   const [output, setOutput] = useState('0');
   const [currNum, setCurrNum] = useState('');
   const [prevNum, setPrevNum] = useState('');
@@ -15,9 +16,12 @@ const App = () => {
   const handleButtonClick = (e) => {
     const value = e.target.value;
     const action = e.target.attributes.action.value;
-    console.log(action);
-    console.log(value);
     const currNumRegex = new RegExp(`${currNum}$`);
+
+    if (output) {
+      setOutput('');
+      setFinalInput('');
+    }
 
     switch (action) {
       case 'num':
@@ -34,6 +38,7 @@ const App = () => {
         } else {
           setInput(input + value);
         }
+
         setActiveOperator(false);
         setActivePercent(false);
         break;
@@ -56,6 +61,7 @@ const App = () => {
           setCurrNum(currNum.substr(1));
           setInput(input.replace(currNumRegex, currNum.substr(1)));
         }
+
         setActiveOperator(false);
         break;
       case 'operator':
@@ -70,14 +76,17 @@ const App = () => {
           setInput(input + ' ' + value + ' ');
           setPrevNum(currNum);
         }
+
         setActiveOperator(true);
         setActivePercent(false);
         break;
       case 'percent':
-        let percentValue;
         if (!currNum) {
           break;
-        } else if (!prevNum) {
+        }
+
+        let percentValue;
+        if (!prevNum) {
           percentValue = String(parseFloat(currNum) / 100);
           setCurrNum(percentValue);
           setInput(input.replace(currNumRegex, percentValue));
@@ -88,13 +97,22 @@ const App = () => {
           setCurrNum(percentValue);
           setInput(input.replace(currNumRegex, percentValue));
         }
+
         setActivePercent(true);
         break;
       case 'evaluate':
         setOutput(evaluate(input));
+        setFinalInput(input);
+
+        setInput('');
+        setCurrNum('');
+        setPrevNum('');
+        setActiveOperator(false);
+        setActivePercent(false);
         break;
       case 'clear':
         setInput('');
+        setFinalInput('');
         setOutput('0');
         setCurrNum('');
         setPrevNum('');
@@ -112,6 +130,7 @@ const App = () => {
         {JSON.stringify(
           {
             input: input,
+            finalInput: finalInput,
             output: output,
             currNum: currNum,
             prevNum: prevNum,
@@ -122,7 +141,7 @@ const App = () => {
           1,
         )}
       </pre>
-      <Header input={input} output={output} />
+      <Header input={input} output={output} finalInput={finalInput} />
       <Keyboard handleButtonClick={handleButtonClick} />
     </div>
   );
