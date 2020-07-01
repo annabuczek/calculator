@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import buttons from './keyboardButtons';
 import './Keyboard.scss';
@@ -22,6 +23,10 @@ const Keyboard = (props) => {
       })}
     </div>
   );
+};
+
+Keyboard.propTypes = {
+  handleButtonClick: PropTypes.func.isRequired,
 };
 
 export default Keyboard;
