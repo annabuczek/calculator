@@ -126,21 +126,6 @@ const App = () => {
 
   return (
     <div className="calculator">
-      <pre>
-        {JSON.stringify(
-          {
-            input: input,
-            finalInput: finalInput,
-            output: output,
-            currNum: currNum,
-            prevNum: prevNum,
-            activePercent: activePercent,
-            activeOperator: activeOperator,
-          },
-          null,
-          1,
-        )}
-      </pre>
       <Header input={input} output={output} finalInput={finalInput} />
       <Keyboard handleButtonClick={handleButtonClick} />
     </div>
