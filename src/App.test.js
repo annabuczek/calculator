@@ -66,7 +66,7 @@ describe('Calculator', () => {
 
     findButton(wrapper, '9').simulate('click');
     expect(wrapper.find('.input').text()).toBe('9');
-    expect(wrapper.find('.output').text()).toBe('');
+    expect(wrapper.find('.output').text()).toBe('0');
   });
 
   it('clears input and output when C button clicked', () => {

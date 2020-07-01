@@ -18,8 +18,8 @@ const App = () => {
     const action = e.target.attributes.action.value;
     const currNumRegex = new RegExp(`${currNum}$`);
 
-    if (output) {
-      setOutput('');
+    if (output !== '0') {
+      setOutput('0');
       setFinalInput('');
     }
 
@@ -101,6 +101,9 @@ const App = () => {
         setActivePercent(true);
         break;
       case 'evaluate':
+        if (output !== '0' || !input) {
+          break;
+        }
         setOutput(evaluate(input));
         setFinalInput(input);
 
