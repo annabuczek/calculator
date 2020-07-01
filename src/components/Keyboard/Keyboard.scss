@@ -4,5 +4,10 @@
   display: flex;
   flex-wrap: wrap;
   height: 46rem;
-  max-height: 60vh;
+  @media screen and (max-height: $bp-600) and (orientation: landscape) {
+    max-height: 47vh;
+  }
+  @media screen and (max-width: $bp-600) and (orientation: portrait) {
+    max-height: 55vh;
+  }
 }

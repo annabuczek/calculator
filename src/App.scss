@@ -39,4 +39,7 @@ button {
   margin: 1.6rem;
   border-radius: 0.5rem;
   overflow: hidden;
+  @media screen and (max-height: $bp-600) and (orientation: landscape) {
+    max-width: 100vw;
+  }
 }
