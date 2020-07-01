@@ -1,0 +1,24 @@
+@mixin button-accent($background-color) {
+  background-color: $background-color;
+  color: $color-button-text-light;
+
+  &:hover {
+    background-color: darken($color: $background-color, $amount: 10%);
+  }
+}
+
+@mixin button-gradient($deg, $color-gradient1, $color-gradient2) {
+  background-image: linear-gradient(
+    $deg,
+    $color-gradient1,
+    $color-gradient2
+  );
+
+  &:hover {
+    background-image: linear-gradient(
+      $deg,
+      darken($color: $color-gradient1, $amount: 10%),
+      darken($color: $color-gradient2, $amount: 10%)
+    );
+  }
+}
